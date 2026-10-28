@@ -99,6 +99,53 @@
   --button-manuscript-disabled-background: #f0f0f0;
   --button-manuscript-outline-width: 1.5px;
 
+  /* Shared input and search field tokens. */
+  --input-field-max-width: 21.875rem;
+  --input-field-inline-gutter: 2.5rem;
+  --input-field-height: 3rem;
+  --input-field-textarea-height: 4.25rem;
+  --input-field-space-0: 0;
+  --input-field-space-1: 0.25rem;
+  --input-field-space-2: 0.5rem;
+  --input-field-space-3: 0.625rem;
+  --input-field-space-4: 0.75rem;
+  --input-field-space-5: 1.25rem;
+  --input-field-flex-fixed: 0;
+  --input-field-flex-grow: 1;
+  --input-field-flex-shrink: 1;
+  --input-field-control-flex-basis: 0%;
+  --input-field-border-width: var(--button-border-width);
+  --input-field-border-color: var(--color-grey-1);
+  --input-field-border-radius: var(--button-radius);
+  --input-field-background: var(--color-white);
+  --input-field-text-color: var(--color-text-1);
+  --input-field-placeholder-color: var(--color-text-2);
+  --input-field-focus-color: var(--color-primary);
+  --input-field-font-size: 0.75rem;
+  --input-field-line-height: 1.4;
+  --input-field-outline-width: 2px;
+  --input-field-outline-offset: 2px;
+  --input-field-disabled-opacity: 0.65;
+  --input-field-chevron-size: 1rem;
+  --input-field-country-chevron-size: 0.875rem;
+  --input-field-chevron-offset: var(--input-field-space-4);
+  --input-field-icon-stroke-width: 1.25;
+  --input-field-country-width: 2.625rem;
+  --input-field-flag-width: 1.75rem;
+  --input-field-flag-height: 1.125rem;
+  --input-field-divider-width: var(--button-border-width);
+  --input-field-search-button-width: 1.25rem;
+  --input-field-search-button-height: 1.5rem;
+  --input-field-search-icon-size: 1.125rem;
+  --input-field-search-icon-color: var(--color-primary);
+  --input-field-search-icon-stroke-width: 1.4;
+  --input-field-country-opacity: 0;
+  --color-india-saffron: #ff9933;
+  --color-india-green: #138808;
+  --color-india-navy: #000080;
+  --input-field-india-emblem-stroke-width: 0.55;
+  --input-field-india-spoke-stroke-width: 0.3;
+
   /* Mobile-first role tokens; components need no media queries. */
   --font-size-h1: var(--font-size-h1-mobile);
   --font-size-h2: var(--font-size-h2-mobile);
@@ -504,39 +551,38 @@ button,
 .search-field {
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: min(350px, calc(100% - 40px));
-  min-width: 0;
-  flex: 0 1 auto;
-  height: 48px;
-  min-height: 48px;
-  margin: 20px 0 0 20px;
-  padding: 10px 12px;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
-  background: #ffffff;
-  color: #333333;
-  color-scheme: light;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  line-height: 1.4;
+  gap: var(--input-field-space-3);
+  width: min(var(--input-field-max-width), calc(100% - var(--input-field-inline-gutter) - var(--input-field-inline-gutter)));
+  min-width: var(--input-field-space-0);
+  flex: var(--input-field-flex-fixed) var(--input-field-flex-shrink) auto;
+  height: var(--input-field-height);
+  min-height: var(--input-field-height);
+  margin: var(--input-field-space-5) var(--input-field-space-0) var(--input-field-space-0) var(--input-field-space-5);
+  padding: var(--input-field-space-2) var(--input-field-space-4);
+  border: var(--input-field-border-width) solid var(--input-field-border-color);
+  border-radius: var(--input-field-border-radius);
+  background: var(--input-field-background);
+  color: var(--input-field-text-color);
+  font-family: var(--font-family-body);
+  font-size: var(--input-field-font-size);
+  line-height: var(--input-field-line-height);
 }
 
 .input-field:focus-within,
 .search-field:focus-within {
-  outline: 2px solid #005fcc;
-  outline-offset: 2px;
+  outline: var(--input-field-outline-width) solid var(--input-field-focus-color);
+  outline-offset: var(--input-field-outline-offset);
 }
 
 .input-field__control,
 .search-field__control {
-  flex: 1;
-  min-width: 0;
+  flex: var(--input-field-flex-grow) var(--input-field-flex-shrink) var(--input-field-control-flex-basis);
+  min-width: var(--input-field-space-0);
   width: 100%;
   height: 100%;
-  padding: 0;
-  border: 0;
-  outline: 0;
+  padding: var(--input-field-space-0);
+  border-width: var(--input-field-space-0);
+  outline-width: var(--input-field-space-0);
   background: transparent;
   color: inherit;
   font: inherit;
@@ -544,14 +590,14 @@ button,
 
 .input-field__control::placeholder,
 .search-field__control::placeholder {
-  color: #a3a3a3;
+  color: var(--input-field-placeholder-color);
   opacity: 1;
 }
 
 .input-field__control:disabled,
 .search-field__control:disabled {
   cursor: not-allowed;
-  opacity: 0.65;
+  opacity: var(--input-field-disabled-opacity);
 }
 
 .input-field--select {
@@ -560,88 +606,88 @@ button,
 
 .input-field--select .input-field__control {
   appearance: none;
-  padding-right: 20px;
+  padding-inline-end: calc(var(--input-field-chevron-size) + var(--input-field-space-2));
 }
 
 .input-field__chevron {
   position: absolute;
-  right: 12px;
-  width: 16px;
-  height: 16px;
+  inset-inline-end: var(--input-field-chevron-offset);
+  width: var(--input-field-chevron-size);
+  height: var(--input-field-chevron-size);
   fill: none;
-  stroke: #555555;
+  stroke: var(--input-field-text-color);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 1.25;
+  stroke-width: var(--input-field-icon-stroke-width);
   pointer-events: none;
 }
 
 .input-field--date .input-field__control {
-  color: #a3a3a3;
+  color: var(--input-field-placeholder-color);
 }
 
 .input-field--phone {
   position: relative;
-  gap: 10px;
+  gap: var(--input-field-space-3);
 }
 
 .input-field__country-display {
   display: flex;
-  flex: 0 0 42px;
+  flex: var(--input-field-flex-fixed) var(--input-field-flex-fixed) var(--input-field-country-width);
   align-items: center;
   justify-content: space-between;
-  width: 42px;
+  width: var(--input-field-country-width);
   height: 100%;
 }
 
 .input-field__country-display > svg:last-child {
-  width: 14px;
-  height: 14px;
+  width: var(--input-field-country-chevron-size);
+  height: var(--input-field-country-chevron-size);
   fill: none;
-  stroke: #555555;
+  stroke: var(--input-field-text-color);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 1.25;
+  stroke-width: var(--input-field-icon-stroke-width);
 }
 
 .input-field__country-display .input-field__india-flag {
   display: block;
-  flex: 0 0 28px;
-  width: 28px;
-  height: 18px;
+  flex: var(--input-field-flex-fixed) var(--input-field-flex-fixed) var(--input-field-flag-width);
+  width: var(--input-field-flag-width);
+  height: var(--input-field-flag-height);
 }
 
 .input-field__country {
   position: absolute;
   z-index: 1;
-  top: 0;
-  left: 12px;
-  width: 42px;
+  inset-block: var(--input-field-space-0);
+  inset-inline-start: var(--input-field-space-4);
+  width: var(--input-field-country-width);
   height: 100%;
-  opacity: 0;
+  opacity: var(--input-field-country-opacity);
   appearance: none;
   cursor: pointer;
 }
 
 .input-field__divider {
   align-self: stretch;
-  width: 1px;
-  background: #e1e1e1;
+  width: var(--input-field-divider-width);
+  background: var(--input-field-border-color);
 }
 
 .input-field--textarea {
-  height: 68px;
-  min-height: 68px;
+  height: var(--input-field-textarea-height);
+  min-height: var(--input-field-textarea-height);
   align-items: stretch;
 }
 
 .input-field--textarea .input-field__control {
   resize: vertical;
-  line-height: 1.4;
+  line-height: var(--input-field-line-height);
 }
 
 .search-field {
-  padding-right: 10px;
+  padding-inline-end: var(--input-field-space-3);
 }
 
 .search-field__control {
@@ -654,32 +700,32 @@ button,
 
 .search-field__button {
   display: grid;
-  flex: 0 0 20px;
+  flex: var(--input-field-flex-fixed) var(--input-field-flex-fixed) var(--input-field-search-button-width);
   place-items: center;
-  width: 20px;
-  height: 24px;
-  padding: 0;
-  border: 0;
+  width: var(--input-field-search-button-width);
+  height: var(--input-field-search-button-height);
+  padding: var(--input-field-space-0);
+  border-width: var(--input-field-space-0);
   background: transparent;
-  color: #0066cc;
+  color: var(--input-field-search-icon-color);
   cursor: pointer;
 }
 
 .search-field__button:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+  outline: var(--input-field-outline-width) solid currentColor;
+  outline-offset: var(--input-field-outline-offset);
 }
 
 .search-field__button:disabled {
   cursor: not-allowed;
-  opacity: 0.65;
+  opacity: var(--input-field-disabled-opacity);
 }
 
 .search-field__button svg {
-  width: 18px;
-  height: 18px;
+  width: var(--input-field-search-icon-size);
+  height: var(--input-field-search-icon-size);
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
-  stroke-width: 1.4;
+  stroke-width: var(--input-field-search-icon-stroke-width);
 }

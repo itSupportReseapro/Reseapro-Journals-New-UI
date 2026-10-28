@@ -72,22 +72,22 @@ export default function InputField({
             >
               <path
                 d="M2 0h24a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2Z"
-                fill="#ff9933"
+                fill="var(--color-india-saffron)"
               />
-              <rect y="6" width="28" height="6" fill="#ffffff" />
+              <rect y="6" width="28" height="6" fill="var(--color-white)" />
               <path
                 d="M0 12h28v4a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-4Z"
-                fill="#138808"
+                fill="var(--color-india-green)"
               />
               <circle
                 cx="14"
                 cy="9"
                 r="2.7"
                 fill="none"
-                stroke="#000080"
-                strokeWidth="0.55"
+                stroke="var(--color-india-navy)"
+                strokeWidth="var(--input-field-india-emblem-stroke-width)"
               />
-              <g stroke="#000080" strokeWidth="0.3">
+              <g stroke="var(--color-india-navy)" strokeWidth="var(--input-field-india-spoke-stroke-width)">
                 {Array.from({ length: 24 }, (_, index) => (
                   <line
                     key={index}

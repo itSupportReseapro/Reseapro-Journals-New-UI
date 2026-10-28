@@ -157,7 +157,7 @@
 .navStage {
   position: relative;
   height: 3.625rem;
-  overflow: hidden;
+  overflow: visible;
   transition: height 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
