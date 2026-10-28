@@ -1,11 +1,10 @@
-﻿import Header from "@/components/ui/Header";
-import styles from "./page.module.css";
+import Header from "@/components/ui/Header";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div className={"home-page-page"}>
       <Header />
-      <main className={styles.main} aria-label="Page content" />
+      <main className={"home-page-main"} aria-label="Page content" />
     </div>
   );
 }

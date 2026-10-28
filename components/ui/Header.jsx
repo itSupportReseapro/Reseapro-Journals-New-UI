@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Button from "./Button";
-import styles from "./Header.module.css";
 
 const defaultItems = [
   { label: "About Us", href: "/about" },
@@ -32,16 +31,16 @@ const defaultItems = [
 function BrandLogo({ mobile = false, href = "/" }) {
   const asset = (name) => `/header/${mobile ? `mobile-${name}` : name}`;
   return (
-    <a className={mobile ? styles.mobileBrand : styles.brand} href={href} aria-label="Reseapro Journals home">
-      <Image className={styles.logoTop} src={asset("logo-word-top.svg")} width={mobile ? 101 : 123} height={mobile ? 14 : 16} alt="" priority />
-      <Image className={styles.logoBottom} src={asset("logo-word-bottom.svg")} width={mobile ? 138 : 167} height={mobile ? 18 : 22} alt="" priority />
-      <Image className={styles.logoMark} src={asset("logo-mark.svg")} width={mobile ? 22 : 27} height={mobile ? 32 : 39} alt="" priority />
+    <a className={mobile ? "editorial-header-mobileBrand" : "editorial-header-brand"} href={href} aria-label="Reseapro Journals home">
+      <Image className={"editorial-header-logoTop"} src={asset("logo-word-top.svg")} width={mobile ? 101 : 123} height={mobile ? 14 : 16} alt="" priority />
+      <Image className={"editorial-header-logoBottom"} src={asset("logo-word-bottom.svg")} width={mobile ? 138 : 167} height={mobile ? 18 : 22} alt="" priority />
+      <Image className={"editorial-header-logoMark"} src={asset("logo-mark.svg")} width={mobile ? 22 : 27} height={mobile ? 32 : 39} alt="" priority />
     </a>
   );
 }
 
 function ArrowIcon({ mobile = false }) {
-  return <Image className={styles.arrowIconGraphic} src={mobile ? "/header/mobile-arrow.svg" : "/header/arrow-up-right.svg"} width={20} height={20} alt="" />;
+  return <Image className={"editorial-header-arrowIconGraphic"} src={mobile ? "/header/mobile-arrow.svg" : "/header/arrow-up-right.svg"} width={20} height={20} alt="" />;
 }
 
 function SearchIcon() {
@@ -54,11 +53,11 @@ function SearchIcon() {
 
 function AccountActions({ mobile = false, loginHref, submitHref, labels }) {
   return (
-    <div className={mobile ? styles.mobileActions : styles.actions}>
+    <div className={mobile ? "editorial-header-mobileActions" : "editorial-header-actions"}>
       <Button
         variant="outline"
         size="md"
-        className={mobile ? styles.mobileLogin : styles.login}
+        className={mobile ? "editorial-header-mobileLogin" : "editorial-header-login"}
         href={loginHref}
         startIcon={<Image src={mobile ? "/header/mobile-user.svg" : "/header/login-user.svg"} width={20} height={20} alt="" />}
       >
@@ -67,7 +66,7 @@ function AccountActions({ mobile = false, loginHref, submitHref, labels }) {
       <Button
         variant="primary"
         size="manuscript"
-        className={mobile ? styles.mobileSubmit : styles.submit}
+        className={mobile ? "editorial-header-mobileSubmit" : "editorial-header-submit"}
         href={submitHref}
         endIcon={<ArrowIcon mobile={mobile} />}
       >
@@ -83,28 +82,28 @@ function NavItems({ items, mobile, openMenu, setOpenMenu }) {
     const isOpen = openMenu === item.label;
     const menuId = `header-menu-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
     return (
-      <div className={`${styles.navItem} ${mobile ? styles.mobileNavItem : ""}`} key={item.label}>
+      <div className={`${"editorial-header-navItem"} ${mobile ? "editorial-header-mobileNavItem" : ""}`} key={item.label}>
         <Button
           variant="text"
           size="sm"
-          className={`${styles.navLink} ${isOpen ? styles.navLinkActive : ""}`}
+          className={`${"editorial-header-navLink"} ${isOpen ? "editorial-header-navLinkActive" : ""}`}
           href={hasMenu ? undefined : item.href}
           aria-expanded={hasMenu ? isOpen : undefined}
           aria-controls={hasMenu ? menuId : undefined}
           onClick={hasMenu ? () => setOpenMenu(isOpen ? null : item.label) : undefined}
-          endIcon={item.menu ? <Image className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`} src={mobile ? "/header/mobile-chevron.svg" : "/header/chevron-down.svg"} width={mobile ? 20 : 14} height={mobile ? 20 : 14} alt="" /> : undefined}
+          endIcon={item.menu ? <Image className={`${"editorial-header-chevron"} ${isOpen ? "editorial-header-chevronOpen" : ""}`} src={mobile ? "/header/mobile-chevron.svg" : "/header/chevron-down.svg"} width={mobile ? 20 : 14} height={mobile ? 20 : 14} alt="" /> : undefined}
         >
           {item.label}
         </Button>
         {hasMenu && (
           <div
-            className={`${styles.dropdown} ${isOpen ? styles.dropdownOpen : ""} ${mobile ? styles.mobileDropdown : ""}`}
+            className={`${"editorial-header-dropdown"} ${isOpen ? "editorial-header-dropdownOpen" : ""} ${mobile ? "editorial-header-mobileDropdown" : ""}`}
             id={menuId}
             aria-hidden={!isOpen}
             inert={!isOpen}
           >
             {item.menu.map((entry) => (
-              <Button key={entry.label} variant="text" size="sm" className={styles.dropdownLink} href={entry.href}>
+              <Button key={entry.label} variant="text" size="sm" className={"editorial-header-dropdownLink"} href={entry.href}>
                 {entry.label}
               </Button>
             ))}
@@ -161,66 +160,66 @@ export function Header({
   }, [mobileOpen, openMenu]);
 
   return (
-    <header ref={headerRef} className={`${styles.header} ${className}`.trim()}>
-      <div className={styles.masthead}>
-        <div className={styles.brandGroup}>
+    <header ref={headerRef} className={`${"editorial-header-header"} ${className}`.trim()}>
+      <div className={"editorial-header-masthead"}>
+        <div className={"editorial-header-brandGroup"}>
           <BrandLogo href={logoHref} />
-          <span className={styles.identityDivider} aria-hidden="true" />
-          <p className={styles.promise}>Knowledge, without boundaries.</p>
+          <span className={"editorial-header-identityDivider"} aria-hidden="true" />
+          <p className={"editorial-header-promise"}>Knowledge, without boundaries.</p>
         </div>
         <AccountActions loginHref={loginHref} submitHref={submitHref} labels={labels} />
-        <div className={styles.mobileTop}>
+        <div className={"editorial-header-mobileTop"}>
           <BrandLogo mobile href={logoHref} />
           <Button
             variant="ghost"
             size="md"
             iconOnly
-            className={styles.menuToggle}
+            className={"editorial-header-menuToggle"}
             aria-label="Navigation menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
-            icon={<span className={styles.menuDots} aria-hidden="true">{Array.from({ length: 9 }, (_, i) => <i key={i} />)}</span>}
+            icon={<span className={"editorial-header-menuDots"} aria-hidden="true">{Array.from({ length: 9 }, (_, i) => <i key={i} />)}</span>}
           >
             Menu
           </Button>
         </div>
       </div>
 
-      <div className={`${styles.navStage} ${searchOpen ? styles.navStageSearchOpen : ""} ${isSearchVariant ? styles.navStageVariant : ""}`}>
-      <nav className={styles.desktopNav} aria-label="Main navigation" aria-hidden={searchOpen} inert={searchOpen}>
-            <div className={styles.navLinks}>
+      <div className={`${"editorial-header-navStage"} ${searchOpen ? "editorial-header-navStageSearchOpen" : ""} ${isSearchVariant ? "editorial-header-navStageVariant" : ""}`}>
+      <nav className={"editorial-header-desktopNav"} aria-label="Main navigation" aria-hidden={searchOpen} inert={searchOpen}>
+            <div className={"editorial-header-navLinks"}>
               <NavItems items={items} mobile={false} openMenu={openMenu} setOpenMenu={setOpenMenu} />
             </div>
-            <span className={styles.searchDivider} aria-hidden="true" />
-            <Button variant="text" size="sm" className={styles.searchLink} onClick={openSearch} startIcon={<SearchIcon />}>
+            <span className={"editorial-header-searchDivider"} aria-hidden="true" />
+            <Button variant="text" size="sm" className={"editorial-header-searchLink"} onClick={openSearch} startIcon={<SearchIcon />}>
               Search
             </Button>
       </nav>
 
-      <section className={styles.searchPanel} aria-label="Journal search" aria-hidden={!searchOpen} inert={!searchOpen}>
-          <form className={styles.searchControls} action={searchHref} method="get" role="search">
-            <div className={styles.searchField}>
+      <section className={"editorial-header-searchPanel"} aria-label="Journal search" aria-hidden={!searchOpen} inert={!searchOpen}>
+          <form className={"editorial-header-searchControls"} action={searchHref} method="get" role="search">
+            <div className={"editorial-header-searchField"}>
               <input key={searchQuery} name="q" defaultValue={searchQuery} placeholder="Search here..." aria-label="Search journals" />
             </div>
             <Button type="submit" variant="primary" size="md" iconOnly icon={<Image src="/header/variant2-search.svg" width={20} height={20} alt="" />} aria-label="Search" />
-            <Button type="submit" name="mode" value="advanced" variant="outline" size="sm" className={styles.advanceSearch} startIcon={<Image src="/header/variant2-advance-search.svg" width={20} height={20} alt="" />}>
+            <Button type="submit" name="mode" value="advanced" variant="outline" size="sm" className={"editorial-header-advanceSearch"} startIcon={<Image src="/header/variant2-advance-search.svg" width={20} height={20} alt="" />}>
               Advance Search
             </Button>
           </form>
-          <Button variant="ghost" size="md" iconOnly className={styles.closeSearch} aria-label="Close search" onClick={closeSearch} icon={<Image src="/header/search-close.svg" width={16} height={16} alt="" />} />
+          <Button variant="ghost" size="md" iconOnly className={"editorial-header-closeSearch"} aria-label="Close search" onClick={closeSearch} icon={<Image src="/header/search-close.svg" width={16} height={16} alt="" />} />
       </section>
       </div>
 
       {mobileOpen && (
-        <div className={styles.mobileMenu}>
-          <div className={styles.mobileMenuHeading}>
+        <div className={"editorial-header-mobileMenu"}>
+          <div className={"editorial-header-mobileMenuHeading"}>
             <h2>Menu</h2>
-            <Button variant="ghost" size="sm" iconOnly icon={<Image src="/header/mobile-close.svg" width={24} height={24} alt="" />} className={styles.closeMenu} aria-label="Close navigation menu" onClick={() => setMobileOpen(false)} />
+            <Button variant="ghost" size="sm" iconOnly icon={<Image src="/header/mobile-close.svg" width={24} height={24} alt="" />} className={"editorial-header-closeMenu"} aria-label="Close navigation menu" onClick={() => setMobileOpen(false)} />
           </div>
-          <p className={styles.mobilePromise}>Knowledge, without boundaries.</p>
-          <nav className={styles.mobileNav} aria-label="Mobile navigation">
+          <p className={"editorial-header-mobilePromise"}>Knowledge, without boundaries.</p>
+          <nav className={"editorial-header-mobileNav"} aria-label="Mobile navigation">
             <NavItems items={items} mobile openMenu={openMenu} setOpenMenu={setOpenMenu} />
-            <Button variant="text" size="sm" className={styles.mobileSearchLink} onClick={() => { openSearch(); setMobileOpen(false); }} endIcon={<SearchIcon />}>
+            <Button variant="text" size="sm" className={"editorial-header-mobileSearchLink"} onClick={() => { openSearch(); setMobileOpen(false); }} endIcon={<SearchIcon />}>
               Search
             </Button>
           </nav>

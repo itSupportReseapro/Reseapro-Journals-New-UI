@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Button from "./Button";
-import styles from "./Card.module.css";
 
 const journalCoverDesktop = "/cards/journal-cover-desktop.png";
 const journalCoverMobile = "/cards/journal-cover-mobile.png";
@@ -61,9 +60,9 @@ const roleDetails = {
 };
 
 const roleStyles = {
-  author: { solid: styles.authorSolid, soft: styles.authorSoft },
-  editor: { solid: styles.editorSolid, soft: styles.editorSoft },
-  reviewer: { solid: styles.reviewerSolid, soft: styles.reviewerSoft },
+  author: { solid: "ui-card-authorSolid", soft: "ui-card-authorSoft" },
+  editor: { solid: "ui-card-editorSolid", soft: "ui-card-editorSoft" },
+  reviewer: { solid: "ui-card-reviewerSolid", soft: "ui-card-reviewerSoft" },
 };
 
 function normalizeRole(role) {
@@ -87,9 +86,9 @@ function ArrowIcon({ src, size = 20, className }) {
 }
 
 export function Card({ as: Element = "article", variant = "outlined", className = "", children, ...props }) {
-  const variantClass = variant === "shadow" ? styles.baseCardShadow : styles.baseCardOutlined;
+  const variantClass = variant === "shadow" ? "ui-card-baseCardShadow" : "ui-card-baseCardOutlined";
   return (
-    <Element className={`${styles.baseCard} ${variantClass} ${className}`.trim()} {...props}>
+    <Element className={`${"ui-card-baseCard"} ${variantClass} ${className}`.trim()} {...props}>
       {children}
     </Element>
   );
@@ -109,9 +108,9 @@ export function JournalCard({
   className = "",
 }) {
   return (
-    <article className={`${styles.journalCard} ${className}`.trim()}>
-      <div className={styles.journalMedia}>
-        <div className={styles.journalDesktopArtwork}>
+    <article className={`${"ui-card-journalCard"} ${className}`.trim()}>
+      <div className={"ui-card-journalMedia"}>
+        <div className={"ui-card-journalDesktopArtwork"}>
           <Image
             src={desktopCoverImage}
             alt={coverAlt || `${title} cover`}
@@ -120,8 +119,8 @@ export function JournalCard({
             unoptimized
           />
         </div>
-        <div className={styles.journalMobileArtwork}>
-          <div className={styles.journalMobileImageLayer}>
+        <div className={"ui-card-journalMobileArtwork"}>
+          <div className={"ui-card-journalMobileImageLayer"}>
             <Image
               src={mobileCoverImage}
               alt=""
@@ -133,40 +132,40 @@ export function JournalCard({
         </div>
       </div>
 
-      <div className={styles.journalContent}>
-        <div className={styles.journalTitleGroup}>
-          <h2 className={styles.journalTitle}>{title}</h2>
-          <p className={styles.journalIssn}>ISSN : {issn}</p>
+      <div className={"ui-card-journalContent"}>
+        <div className={"ui-card-journalTitleGroup"}>
+          <h2 className={"ui-card-journalTitle"}>{title}</h2>
+          <p className={"ui-card-journalIssn"}>ISSN : {issn}</p>
         </div>
 
-        <div className={styles.journalMetrics}>
-          <div className={styles.journalMetric}>
-            <span className={styles.journalMetricIcon}>
-              <Image className={styles.desktopAsset} src="/cards/journal-clock-desktop.svg" width={20} height={20} alt="" />
-              <Image className={styles.mobileAsset} src="/cards/journal-clock-mobile.svg" width={16} height={16} alt="" />
+        <div className={"ui-card-journalMetrics"}>
+          <div className={"ui-card-journalMetric"}>
+            <span className={"ui-card-journalMetricIcon"}>
+              <Image className={"ui-card-desktopAsset"} src="/cards/journal-clock-desktop.svg" width={20} height={20} alt="" />
+              <Image className={"ui-card-mobileAsset"} src="/cards/journal-clock-mobile.svg" width={16} height={16} alt="" />
             </span>
             <span>Average Review Time : {averageReviewTime}</span>
           </div>
-          <div className={styles.journalMetric}>
-            <span className={styles.journalMetricIcon}>
-              <Image className={styles.desktopAsset} src="/cards/journal-index-desktop.svg" width={20} height={20} alt="" />
-              <Image className={styles.mobileAsset} src="/cards/journal-index-mobile.svg" width={16} height={16} alt="" />
+          <div className={"ui-card-journalMetric"}>
+            <span className={"ui-card-journalMetricIcon"}>
+              <Image className={"ui-card-desktopAsset"} src="/cards/journal-index-desktop.svg" width={20} height={20} alt="" />
+              <Image className={"ui-card-mobileAsset"} src="/cards/journal-index-mobile.svg" width={16} height={16} alt="" />
             </span>
             <span>Indexed in {indexedIn}</span>
           </div>
         </div>
 
         <Button
-          className={styles.journalAction}
+          className={"ui-card-journalAction"}
           variant="primary"
           size="card"
           fullWidth
           href={href}
           onClick={onClick}
           endIcon={(
-            <span className={styles.responsiveArrow}>
-              <ArrowIcon className={styles.desktopAsset} src="/cards/journal-arrow-desktop.svg" />
-              <ArrowIcon className={styles.mobileAsset} src="/cards/journal-arrow-mobile.svg" size={16} />
+            <span className={"ui-card-responsiveArrow"}>
+              <ArrowIcon className={"ui-card-desktopAsset"} src="/cards/journal-arrow-desktop.svg" />
+              <ArrowIcon className={"ui-card-mobileAsset"} src="/cards/journal-arrow-mobile.svg" size={16} />
             </span>
           )}
         >
@@ -182,14 +181,14 @@ export function RoleCard({ role = "author", title, description, actionLabel, hre
   const details = roleDetails[safeRole];
 
   return (
-    <article className={`${styles.roleCard} ${className}`.trim()}>
-      <span className={styles.roleIconBadge}>
+    <article className={`${"ui-card-roleCard"} ${className}`.trim()}>
+      <span className={"ui-card-roleIconBadge"}>
         <Image src={details.icon} width={24} height={24} alt="" />
       </span>
-      <h2 className={styles.roleTitle}>{title || details.title}</h2>
-      <p className={styles.roleDescription}>{description || details.description}</p>
+      <h2 className={"ui-card-roleTitle"}>{title || details.title}</h2>
+      <p className={"ui-card-roleDescription"}>{description || details.description}</p>
       <Button
-        className={styles.roleAction}
+        className={"ui-card-roleAction"}
         variant="primary"
         size="card"
         fullWidth
@@ -218,8 +217,8 @@ export function ResearchRoleCard({
   const details = roleDetails[safeRole];
 
   return (
-    <article className={`${styles.researchRoleCard} ${roleStyles[safeRole][safeTone]} ${className}`.trim()}>
-      <span className={styles.researchRoleIconBadge}>
+    <article className={`${"ui-card-researchRoleCard"} ${roleStyles[safeRole][safeTone]} ${className}`.trim()}>
+      <span className={"ui-card-researchRoleIconBadge"}>
         <Image
           src={safeTone === "solid" ? details.promoIcon : details.softIcon}
           width={24}
@@ -227,10 +226,10 @@ export function ResearchRoleCard({
           alt=""
         />
       </span>
-      <h2 className={styles.researchRoleTitle}>{title || details.promoTitle}</h2>
-      <p className={styles.researchRoleDescription}>{description || details.promoDescription}</p>
+      <h2 className={"ui-card-researchRoleTitle"}>{title || details.promoTitle}</h2>
+      <p className={"ui-card-researchRoleDescription"}>{description || details.promoDescription}</p>
       <Button
-        className={styles.researchRoleAction}
+        className={"ui-card-researchRoleAction"}
         variant="text"
         size="sm"
         href={href}
@@ -257,10 +256,10 @@ export function TestimonialCard({
   className = "",
 }) {
   return (
-    <article className={`${styles.testimonialCard} ${className}`.trim()}>
+    <article className={`${"ui-card-testimonialCard"} ${className}`.trim()}>
       {authorImage && (
         <Image
-          className={styles.testimonialAvatar}
+          className={"ui-card-testimonialAvatar"}
           src={authorImage}
           width={40}
           height={40}
@@ -268,12 +267,12 @@ export function TestimonialCard({
           unoptimized
         />
       )}
-      <blockquote className={styles.testimonialQuote}>{quote}</blockquote>
-      <div className={styles.testimonialDivider} />
-      <div className={styles.testimonialAuthorRow}>
-        <div className={styles.testimonialIdentity}>
-          <p className={styles.testimonialName}>{authorName}</p>
-          <p className={styles.testimonialHandle}>{authorHandle}</p>
+      <blockquote className={"ui-card-testimonialQuote"}>{quote}</blockquote>
+      <div className={"ui-card-testimonialDivider"} />
+      <div className={"ui-card-testimonialAuthorRow"}>
+        <div className={"ui-card-testimonialIdentity"}>
+          <p className={"ui-card-testimonialName"}>{authorName}</p>
+          <p className={"ui-card-testimonialHandle"}>{authorHandle}</p>
         </div>
         <Image src="/cards/testimonial-rating.svg" width={78} height={13} alt="Rated five out of five stars" />
       </div>
@@ -289,12 +288,12 @@ export function FormCard({
   ...props
 }) {
   return (
-    <section className={`${styles.formCard} ${className}`.trim()} {...props}>
-      <header className={styles.formCardHeader}>
+    <section className={`${"ui-card-formCard"} ${className}`.trim()} {...props}>
+      <header className={"ui-card-formCardHeader"}>
         <h2>{title}</h2>
         {description && <p>{description}</p>}
       </header>
-      <div className={styles.formCardContent}>{children}</div>
+      <div className={"ui-card-formCardContent"}>{children}</div>
     </section>
   );
 }
@@ -308,14 +307,14 @@ export function CollaborationCard({
   className = "",
 }) {
   return (
-    <article className={`${styles.collaborationCard} ${className}`.trim()}>
-      <span className={styles.collaborationIconBadge}>
+    <article className={`${"ui-card-collaborationCard"} ${className}`.trim()}>
+      <span className={"ui-card-collaborationIconBadge"}>
         <Image src="/cards/contact-location.svg" width={22} height={22} alt="" />
       </span>
-      <h2 className={styles.collaborationTitle}>{title}</h2>
-      <p className={styles.collaborationAddress}>{address}</p>
+      <h2 className={"ui-card-collaborationTitle"}>{title}</h2>
+      <p className={"ui-card-collaborationAddress"}>{address}</p>
       <Button
-        className={styles.collaborationAction}
+        className={"ui-card-collaborationAction"}
         variant="primary"
         size="card"
         href={href}
@@ -330,14 +329,14 @@ export function CollaborationCard({
 
 export function FAQCard({ question, children, defaultOpen = true, className = "" }) {
   return (
-    <details className={`${styles.faqCard} ${className}`.trim()} open={defaultOpen}>
-      <summary className={styles.faqQuestion}>
+    <details className={`${"ui-card-faqCard"} ${className}`.trim()} open={defaultOpen}>
+      <summary className={"ui-card-faqQuestion"}>
         <span>{question}</span>
-        <span className={styles.faqToggle} aria-hidden="true">
+        <span className={"ui-card-faqToggle"} aria-hidden="true">
           <Image src="/cards/faq-toggle.svg" width={24} height={24} alt="" />
         </span>
       </summary>
-      <div className={styles.faqAnswer}>{children}</div>
+      <div className={"ui-card-faqAnswer"}>{children}</div>
     </details>
   );
 }

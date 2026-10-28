@@ -1,5 +1,4 @@
 import Header from "@/components/ui/Header";
-import styles from "./page.module.css";
 
 export const metadata = {
   title: "Search | Reseapro Journals",
@@ -12,17 +11,17 @@ export default async function SearchPage({ searchParams }) {
   const advanced = params?.mode === "advanced";
 
   return (
-    <div className={styles.page}>
+    <div className={"search-page-page"}>
       <Header variant="Variant2" searchQuery={query} />
-      <main className={styles.main}>
+      <main className={"search-page-main"}>
         {query && (
-          <section className={styles.searchIntro} aria-live="polite">
+          <section className={"search-page-searchIntro"} aria-live="polite">
             <h1>Search results</h1>
-            <p className={styles.query}>Results for “{query}”</p>
-            <p className={styles.notice}>
+            <p className={"search-page-query"}>Results for “{query}”</p>
+            <p className={"search-page-notice"}>
               The search page is working, but a journal catalogue has not been connected yet.
             </p>
-            {advanced && <p className={styles.advancedNotice}>Advanced search selected.</p>}
+            {advanced && <p className={"search-page-advancedNotice"}>Advanced search selected.</p>}
           </section>
         )}
       </main>
