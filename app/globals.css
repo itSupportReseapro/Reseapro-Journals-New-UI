@@ -1,17 +1,126 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette — original names from the color reference. */
+  --color-primary: #0466c8;
+  --color-primary-pastel-dark: #0052a4;
+  --color-primary-pastel: #d9e8f7;
+  --color-red: #dc3545;
+  --color-red-pastel-dark: #be0315;
+  --color-red-pastel: #fae1e3;
+  --color-green: #28a745;
+  --color-green-pastel: #dff2e3;
+  --color-yellow: #f5a623;
+  --color-yellow-pastel: #fdf2de;
+  --color-orange: #ff7f50;
+  --color-orange-pastel: #ffece5;
+
+  /* Neutrals and text. White and White Pastel intentionally match. */
+  --color-white: #ffffff;
+  --color-white-pastel: #ffffff;
+  --color-bg: #fafafc;
+  --color-grey-1: #e1e1e1;
+  --color-grey-2: #e6e6e6;
+  --color-grey-3: #cdcdcd;
+  --color-text-1: #4d4d4d;
+  --color-text-2: #a8a8a8;
+
+  /* Semantic aliases: use these in components instead of hex values. */
+  --background: var(--color-white);
+  --foreground: var(--color-text-1);
+  --color-surface: var(--color-white);
+  --color-surface-subtle: var(--color-bg);
+  --color-text-primary: var(--color-text-1);
+  --color-text-secondary: var(--color-text-2);
+  --color-border: var(--color-grey-1);
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-pastel-dark);
+
+  /* Fonts are loaded by next/font in the root layout. */
+  --font-family-heading: var(--font-cardo), Georgia, "Times New Roman", serif;
+  --font-family-body: var(--font-hind), Arial, Helvetica, sans-serif;
+  --font-family-ui: var(--font-family-body);
+  --font-geist-sans: var(--font-family-body);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  /* The reference calls the UI weight semi-bold, but specifies 500. */
+  --font-weight-label: var(--font-weight-medium);
+
+  /* Reference sizes in rem (16px browser default; do not fix root size). */
+  --font-size-h1-desktop: 3rem; /* 48px */
+  --font-size-h1-mobile: 1.875rem; /* 30px */
+  --font-size-h2-desktop: 1.5rem; /* 24px */
+  --font-size-h2-mobile: 1.25rem; /* 20px */
+  --font-size-body-desktop: 1.125rem; /* 18px */
+  --font-size-body-mobile: 0.875rem; /* 14px */
+  --font-size-caption-desktop: 0.875rem; /* 14px */
+  --font-size-caption-mobile: 0.75rem; /* 12px */
+  --font-size-label-desktop: 1rem; /* 16px */
+  --font-size-label-mobile: 0.875rem; /* 14px */
+
+  /* Shared defaults: line heights were not specified in the reference. */
+  --line-height-h1: 1.2;
+  --line-height-h2: 1.3;
+  --line-height-body: 1.6;
+  --line-height-caption: 1.5;
+  --line-height-label: 1.5;
+
+  /* Shared button component tokens. */
+  --button-height-xs: 2rem;
+  --button-height-sm: 2.25rem;
+  --button-height-md: 2.75rem;
+  --button-height-lg: 3rem;
+  --button-height-manuscript: 3rem;
+  --button-padding-xs: 0.5rem;
+  --button-padding-sm: 0.75rem;
+  --button-padding-md: 1.125rem;
+  --button-padding-lg: 1.5rem;
+  --button-padding-manuscript: 1rem;
+  --button-icon-size: 1em;
+  --button-gap: 0.5rem;
+  --button-gap-manuscript: 0.375rem;
+  --button-border-width: 1px;
+  --button-radius: 0.25rem;
+  --button-radius-pill: 999rem;
+  --button-focus-width: 3px;
+  --button-focus-offset: 2px;
+  --button-focus-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  --button-disabled-opacity: 0.55;
+  --button-transition-duration: 160ms;
+  --button-transition-easing: ease;
+  --button-spinner-thickness: 2px;
+  --button-spinner-duration: 700ms;
+  --button-text-color: var(--color-primary);
+  --button-primary-background: var(--color-primary);
+  --button-primary-hover-background: var(--color-primary-pastel-dark);
+  --button-secondary-background: var(--color-white-pastel);
+  --button-secondary-hover-background: var(--color-primary-pastel);
+  --button-danger-background: var(--color-red);
+  --button-danger-hover-background: var(--color-red-pastel-dark);
+  --button-manuscript-disabled-background: #f0f0f0;
+  --button-manuscript-outline-width: 1.5px;
+
+  /* Mobile-first role tokens; components need no media queries. */
+  --font-size-h1: var(--font-size-h1-mobile);
+  --font-size-h2: var(--font-size-h2-mobile);
+  --font-size-body: var(--font-size-body-mobile);
+  --font-size-caption: var(--font-size-caption-mobile);
+  --font-size-label: var(--font-size-label-mobile);
 }
 
-@media (prefers-color-scheme: dark) {
+/* Shared tablet/desktop breakpoint. CSS variables cannot be used in queries. */
+@media (min-width: 48rem) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-size-h1: var(--font-size-h1-desktop);
+    --font-size-h2: var(--font-size-h2-desktop);
+    --font-size-body: var(--font-size-body-desktop);
+    --font-size-caption: var(--font-size-caption-desktop);
+    --font-size-label: var(--font-size-label-desktop);
   }
 }
 
 html {
   height: 100%;
+  color-scheme: light;
 }
 
 html,
@@ -26,7 +135,10 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,8 +154,348 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Typography roles: use the element or the reusable class. */
+h1,
+.text-h1 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h1);
+}
+
+h2,
+.text-h2 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-h2);
+}
+
+p,
+.text-body,
+.text-body-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.text-body-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+figcaption,
+.text-caption {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-caption);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+.text-label {
+  font-family: var(--font-family-ui);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  min-height: var(--button-height-md);
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  padding: var(--button-padding-sm) var(--button-padding-md);
+  border: var(--button-border-width) solid transparent;
+  border-radius: var(--button-radius);
+  font-family: var(--font-family-ui);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--button-transition-duration) var(--button-transition-easing),
+    border-color var(--button-transition-duration) var(--button-transition-easing),
+    color var(--button-transition-duration) var(--button-transition-easing),
+    box-shadow var(--button-transition-duration) var(--button-transition-easing);
+}
+
+.button:where(:not(:disabled):not([aria-disabled="true"])):hover {
+  text-decoration: none;
+}
+
+.button:focus-visible {
+  outline: var(--button-focus-width) solid var(--button-focus-color);
+  outline-offset: var(--button-focus-offset);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: var(--button-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--button-primary-background);
+}
+
+.button--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--button-primary-hover-background);
+}
+
+.button--primary:active:not(:disabled) {
+  background-color: var(--color-primary);
+}
+
+.button--secondary {
+  color: var(--button-text-color);
+  background-color: var(--button-secondary-background);
+  border-color: var(--button-text-color);
+}
+
+.button--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--button-secondary-hover-background);
+}
+
+.button--secondary:active:not(:disabled) {
+  background-color: var(--color-white-pastel);
+}
+
+.button--text {
+  padding-inline: var(--button-padding-sm);
+  color: var(--button-text-color);
+  background-color: transparent;
+}
+
+.button--text:hover:not(:disabled):not([aria-disabled="true"]) {
+  color: var(--color-primary-pastel-dark);
+  background-color: var(--color-primary-pastel);
+}
+
+.button--danger {
+  color: var(--color-white);
+  background-color: var(--button-danger-background);
+}
+
+.button--danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--button-danger-hover-background);
+}
+
+.button--danger:active:not(:disabled) {
+  background-color: var(--button-danger-background);
+}
+
+.button--outline {
+  color: var(--button-text-color);
+  background-color: transparent;
+  border-color: currentColor;
+}
+
+.button--outline:hover:not(:disabled):not([aria-disabled="true"]),
+.button--outline:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--button-secondary-hover-background);
+}
+
+.button--ghost {
+  color: var(--button-text-color);
+  background-color: transparent;
+}
+
+.button--ghost:hover:not(:disabled):not([aria-disabled="true"]),
+.button--ghost:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--button-secondary-hover-background);
+}
+
+/* Figma Submit Manuscript component states. */
+.button--manuscript-primary {
+  border-width: 0;
+  color: var(--color-white);
+  background-color: var(--color-primary-pastel-dark);
+}
+
+.button--manuscript-blue {
+  border-width: 0;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.button--manuscript-outline {
+  border: var(--button-manuscript-outline-width) solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+.button--manuscript-disabled {
+  border-width: 0;
+  color: var(--color-primary);
+  background-color: var(--button-manuscript-disabled-background);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.button--xs {
+  min-height: var(--button-height-xs);
+  padding-block: var(--button-padding-xs);
+  padding-inline: var(--button-padding-sm);
+}
+
+.button--sm {
+  min-height: var(--button-height-sm);
+  padding-block: var(--button-padding-xs);
+  padding-inline: var(--button-padding-sm);
+}
+
+.button--md {
+  min-height: var(--button-height-md);
+}
+
+.button--lg {
+  min-height: var(--button-height-lg);
+  padding-inline: var(--button-padding-lg);
+}
+
+.button--card {
+  height: var(--button-height-manuscript);
+  min-height: var(--button-height-manuscript);
+  gap: var(--button-gap-manuscript);
+  padding: 0 var(--button-padding-manuscript);
+}
+
+.button--manuscript {
+  height: var(--button-height-manuscript);
+  min-height: var(--button-height-manuscript);
+  gap: var(--button-gap-manuscript);
+  padding: 0 var(--button-padding-manuscript);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+}
+
+.button--manuscript .button__label {
+  width: 8.9375rem;
+  flex: 0 0 auto;
+}
+
+.button--pill {
+  border-radius: var(--button-radius-pill);
+}
+
+.button--icon-only {
+  width: var(--button-height-md);
+  padding: var(--button-padding-xs);
+}
+
+.button--icon-only.button--xs {
+  width: var(--button-height-xs);
+}
+
+.button--icon-only.button--sm {
+  width: var(--button-height-sm);
+}
+
+.button--icon-only.button--lg {
+  width: var(--button-height-lg);
+}
+
+.button--full-width {
+  width: 100%;
+}
+
+.button__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.button__icon > svg {
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+}
+
+.button__label--visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.button--loading {
+  cursor: progress;
+}
+
+.button--loading:disabled,
+.button--loading[aria-disabled="true"] {
+  opacity: 1;
+}
+
+.button--loading .button__icon {
+  display: none;
+}
+
+.button--loading::before {
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+  border: var(--button-spinner-thickness) solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--button-radius-pill);
+  content: "";
+  animation: button-spin var(--button-spinner-duration) linear infinite;
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button--loading::before {
+    animation-duration: calc(var(--button-spinner-duration) * 2);
+  }
+}
+
+/* Semantic color helpers; palette tokens also work in any CSS module. */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-brand {
+  color: var(--color-primary);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-subtle {
+  background-color: var(--color-surface-subtle);
 }

@@ -1,0 +1,578 @@
+.baseCard {
+  box-sizing: border-box;
+  color: var(--color-text-1, #4d4d4d);
+}
+
+.baseCardOutlined {
+  border: 1px solid var(--color-grey-1, #e1e1e1);
+  border-radius: 1rem;
+  background: var(--color-white, #fff);
+}
+
+.baseCardShadow {
+  border-radius: 1rem;
+  background: var(--color-white, #fff);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
+}
+
+.journalCard {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-grey-1, #e1e1e1);
+  border-radius: 1rem;
+  background: var(--color-white, #fff);
+  color: var(--color-text-1, #4d4d4d);
+}
+
+.journalMedia {
+  position: relative;
+  width: 100%;
+  height: 15rem;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: var(--color-grey-2, #e6e6e6);
+}
+
+.journalDesktopArtwork {
+  position: absolute;
+  top: -5.3125rem;
+  left: 0;
+  width: 100%;
+  height: 25.6875rem;
+  mask-image: url("/cards/journal-cover-mask.svg");
+  mask-position: 0 5.3125rem;
+  mask-repeat: no-repeat;
+  mask-size: 100% 15rem;
+}
+
+.journalDesktopArtwork img,
+.journalMobileImageLayer img {
+  object-fit: cover;
+}
+
+.journalMobileArtwork {
+  display: none;
+}
+
+.journalMobileImageLayer {
+  position: absolute;
+  top: -4.5rem;
+  left: 0;
+  width: 100%;
+  height: 21.875rem;
+}
+
+.journalContent {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding: 1.5rem;
+}
+
+.journalTitleGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.journalTitle {
+  width: 100%;
+  color: var(--color-primary, #0466c8);
+  font-family: var(--font-family-heading, Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.6;
+}
+
+.journalIssn {
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium, 500);
+  line-height: normal;
+}
+
+.journalMetrics {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.journalMetric {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.2;
+}
+
+.journalMetricIcon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktopAsset {
+  display: block;
+}
+
+.mobileAsset {
+  display: none;
+}
+
+.responsiveArrow {
+  display: inline-flex;
+  align-items: center;
+}
+
+.journalAction:global(.button--card) {
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+.roleCard {
+  display: flex;
+  width: 100%;
+  min-height: 19.4375rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-grey-1, #e1e1e1);
+  border-radius: 1rem;
+  background: var(--color-white, #fff);
+  text-align: center;
+}
+
+.roleIconBadge,
+.researchRoleIconBadge,
+.collaborationIconBadge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.roleIconBadge {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  background: var(--color-primary-pastel, #d9e8f7);
+}
+
+.roleTitle,
+.researchRoleTitle,
+.collaborationTitle {
+  color: var(--color-primary, #0466c8);
+  font-family: var(--font-family-heading, Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.2;
+}
+
+.roleDescription {
+  max-width: 100%;
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.6;
+}
+
+.roleAction:global(.button--card) {
+  width: 100%;
+  margin-top: auto;
+}
+
+.researchRoleCard {
+  display: flex;
+  width: 100%;
+  min-height: 13.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.authorSolid {
+  --role-accent: #0466c8;
+  --role-surface: #0466c8;
+  --role-foreground: #ffffff;
+  --role-icon-background: #ffffff;
+}
+
+.authorSoft {
+  --role-accent: #0466c8;
+  --role-surface: #d9e8f7;
+  --role-foreground: #4d4d4d;
+  --role-icon-background: #0466c8;
+}
+
+.reviewerSolid {
+  --role-accent: #f5a623;
+  --role-surface: #f5a623;
+  --role-foreground: #ffffff;
+  --role-icon-background: #ffffff;
+}
+
+.reviewerSoft {
+  --role-accent: #f5a623;
+  --role-surface: #fdf2de;
+  --role-foreground: #4d4d4d;
+  --role-icon-background: #f5a623;
+}
+
+.editorSolid {
+  --role-accent: #ff7f50;
+  --role-surface: #ff7f50;
+  --role-foreground: #ffffff;
+  --role-icon-background: #ffffff;
+}
+
+.editorSoft {
+  --role-accent: #ff7f50;
+  --role-surface: #ffece5;
+  --role-foreground: #4d4d4d;
+  --role-icon-background: #ff7f50;
+}
+
+.researchRoleCard {
+  background: var(--role-surface);
+  color: var(--role-foreground);
+}
+
+.researchRoleIconBadge {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  background: var(--role-icon-background);
+}
+
+.researchRoleTitle {
+  color: inherit;
+  font-size: 1.25rem;
+}
+
+.researchRoleDescription {
+  max-width: 20rem;
+  color: inherit;
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.6;
+}
+
+.researchRoleAction:global(.button) {
+  min-height: 0;
+  height: auto;
+  gap: 0.375rem;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  line-height: 1.6;
+}
+
+.researchRoleAction:global(.button--text:hover),
+.researchRoleAction:global(.button--text:active) {
+  color: inherit;
+  background: transparent;
+}
+
+.testimonialCard {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 14.375rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 1rem;
+  border: 1px solid var(--color-grey-1, #e1e1e1);
+  border-radius: 1rem;
+  background: var(--color-white, #fff);
+}
+
+.testimonialAvatar {
+  position: absolute;
+  top: -1.0625rem;
+  left: 2.4375rem;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonialQuote {
+  width: 100%;
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-heading, Georgia, serif);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.6;
+}
+
+.testimonialDivider {
+  width: 100%;
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--color-grey-1, #e1e1e1);
+}
+
+.testimonialAuthorRow {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.testimonialIdentity {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.testimonialName {
+  overflow: hidden;
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-heading, Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.testimonialHandle {
+  overflow: hidden;
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.formCard {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 38.0625rem;
+  padding: 2.25rem;
+  border-radius: 1rem;
+  background: #fafafc;
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 10%);
+}
+
+.formCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.formCardHeader h2 {
+  color: var(--color-primary, #0466c8);
+  font-family: var(--font-family-heading, Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.25;
+}
+
+.formCardHeader p {
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.5;
+}
+
+.formCardContent {
+  margin-top: 2rem;
+}
+
+.collaborationCard {
+  display: flex;
+  width: 100%;
+  max-width: 16.875rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--color-white, #fff);
+  box-shadow: 0 0 1.25rem 0.125rem rgb(0 0 0 / 8%);
+}
+
+.collaborationIconBadge {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-primary-pastel, #d9e8f7);
+}
+
+.collaborationTitle {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.collaborationAddress {
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.6;
+}
+
+.collaborationAction:global(.button--card) {
+  width: 100%;
+  margin-top: auto;
+}
+
+.faqCard {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  background: var(--color-white, #fff);
+  box-shadow: 0 0.5rem 0.625rem rgb(0 0 0 / 2%);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  color: var(--color-primary, #0466c8);
+  cursor: pointer;
+  font-family: var(--font-family-heading, Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.2;
+  list-style: none;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqToggle {
+  position: relative;
+  display: inline-flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--color-grey-1, #e1e1e1);
+  border-radius: 0.25rem;
+  background: var(--color-white, #fff);
+}
+
+.faqCard:not([open]) .faqToggle::after {
+  position: absolute;
+  width: 0.875rem;
+  height: 1.5px;
+  background: var(--color-primary, #0466c8);
+  content: "";
+  transform: rotate(90deg);
+}
+
+.faqAnswer {
+  padding-top: 1rem;
+  color: var(--color-text-1, #4d4d4d);
+  font-family: var(--font-family-body, Arial, sans-serif);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.6;
+}
+
+@media (max-width: 40rem) {
+  .journalCard {
+    border-radius: 0.5rem;
+  }
+
+  .journalMedia {
+    height: 12.75rem;
+  }
+
+  .journalDesktopArtwork {
+    display: none;
+  }
+
+  .journalMobileArtwork {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+  .journalContent {
+    gap: 0.375rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .journalTitleGroup {
+    gap: 0.375rem;
+  }
+
+  .journalTitle {
+    min-height: 5.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .journalMetrics {
+    gap: 0.75rem;
+  }
+
+  .journalMetric {
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .desktopAsset {
+    display: none;
+  }
+
+  .mobileAsset {
+    display: block;
+  }
+
+  .journalAction:global(.button--card) {
+    height: 2.25rem;
+    min-height: 2.25rem;
+    padding: 0.625rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .roleCard {
+    min-height: 0;
+  }
+
+  .formCard {
+    padding: 1.5rem;
+  }
+
+  .faqCard {
+    padding: 1.5rem;
+  }
+
+  .faqQuestion {
+    font-size: 1.125rem;
+  }
+}
