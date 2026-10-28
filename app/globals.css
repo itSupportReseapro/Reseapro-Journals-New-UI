@@ -47,3 +47,187 @@ a {
     color-scheme: dark;
   }
 }
+
+.input-field,
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(350px, calc(100% - 40px));
+  min-width: 0;
+  flex: 0 1 auto;
+  height: 48px;
+  min-height: 48px;
+  margin: 20px 0 0 20px;
+  padding: 10px 12px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #333333;
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.input-field:focus-within,
+.search-field:focus-within {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+
+.input-field__control,
+.search-field__control {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.input-field__control::placeholder,
+.search-field__control::placeholder {
+  color: #a3a3a3;
+  opacity: 1;
+}
+
+.input-field__control:disabled,
+.search-field__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.input-field--select {
+  position: relative;
+}
+
+.input-field--select .input-field__control {
+  appearance: none;
+  padding-right: 20px;
+}
+
+.input-field__chevron {
+  position: absolute;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #555555;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.25;
+  pointer-events: none;
+}
+
+.input-field--date .input-field__control {
+  color: #a3a3a3;
+}
+
+.input-field--phone {
+  position: relative;
+  gap: 10px;
+}
+
+.input-field__country-display {
+  display: flex;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: space-between;
+  width: 42px;
+  height: 100%;
+}
+
+.input-field__country-display > svg:last-child {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: #555555;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.25;
+}
+
+.input-field__country-display .input-field__india-flag {
+  display: block;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 18px;
+}
+
+.input-field__country {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 12px;
+  width: 42px;
+  height: 100%;
+  opacity: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.input-field__divider {
+  align-self: stretch;
+  width: 1px;
+  background: #e1e1e1;
+}
+
+.input-field--textarea {
+  height: 68px;
+  min-height: 68px;
+  align-items: stretch;
+}
+
+.input-field--textarea .input-field__control {
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.search-field {
+  padding-right: 10px;
+}
+
+.search-field__control {
+  appearance: none;
+}
+
+.search-field__control::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.search-field__button {
+  display: grid;
+  flex: 0 0 20px;
+  place-items: center;
+  width: 20px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.search-field__button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.search-field__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.search-field__button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.4;
+}
