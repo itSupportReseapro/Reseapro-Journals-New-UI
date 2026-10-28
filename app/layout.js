@@ -1,4 +1,4 @@
-import { Cardo, Hind, Geist_Mono } from "next/font/google";
+﻿import { Cardo, Hind, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const cardo = Cardo({
@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Reseapro Journals",
-  description: "Reseapro Journals editorial header preview.",
+  description: "Reseapro Journals application",
 };
 
 export default function RootLayout({ children }) {
