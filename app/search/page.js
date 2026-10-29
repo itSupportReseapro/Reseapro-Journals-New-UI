@@ -1,30 +1,13 @@
-import Header from "@/components/ui/Header";
+import JournalFinderPage from "@/components/ui/JournalFinderPage";
 
 export const metadata = {
-  title: "Search | Reseapro Journals",
-  description: "Search Reseapro Journals by title or keyword.",
+  title: "Find a Journal | Reseapro Journals",
+  description: "Explore Reseapro Journals and find a home for your research.",
 };
 
 export default async function SearchPage({ searchParams }) {
   const params = await searchParams;
-  const query = typeof params?.q === "string" ? params.q.trim() : "";
-  const advanced = params?.mode === "advanced";
+  const initialQuery = typeof params?.q === "string" ? params.q.trim() : "";
 
-  return (
-    <div className={"search-page-page"}>
-      <Header variant="Variant2" searchQuery={query} />
-      <main className={"search-page-main"}>
-        {query && (
-          <section className={"search-page-searchIntro"} aria-live="polite">
-            <h1>Search results</h1>
-            <p className={"search-page-query"}>Results for “{query}”</p>
-            <p className={"search-page-notice"}>
-              The search page is working, but a journal catalogue has not been connected yet.
-            </p>
-            {advanced && <p className={"search-page-advancedNotice"}>Advanced search selected.</p>}
-          </section>
-        )}
-      </main>
-    </div>
-  );
+  return <JournalFinderPage initialQuery={initialQuery} />;
 }

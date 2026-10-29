@@ -32,6 +32,7 @@ export default function Button({
   shape = "default",
   startIcon,
   endIcon,
+  arrowAnimation = false,
   icon,
   iconOnly = false,
   fullWidth = false,
@@ -47,6 +48,11 @@ export default function Button({
   const safeShape = shape === "pill" ? "pill" : "default";
   const isDisabled = disabled || loading || safeVariant === "manuscript-disabled";
   const accessibleLabel = props["aria-label"] ?? (typeof children === "string" ? children : undefined);
+  const arrowIconClass = arrowAnimation === "right"
+    ? " button__icon--arrow button__icon--arrow-right"
+    : arrowAnimation
+      ? " button__icon--arrow"
+      : "";
   const classes = [
     "button",
     `button--${safeVariant}`,
@@ -75,7 +81,7 @@ export default function Button({
           )}
           <span className="button__label">{children}</span>
           {endIcon && (
-            <span className="button__icon" aria-hidden="true">
+              <span className={`button__icon${arrowIconClass}`} aria-hidden="true">
               {endIcon}
             </span>
           )}
@@ -147,6 +153,7 @@ export function SubmitManuscriptButton({ state = "default", children = "Submit M
       {...props}
       variant={manuscriptButtonStyles[safeState]}
       size="manuscript"
+      arrowAnimation={safeState === "default" ? "right" : safeState !== "disabled"}
       endIcon={<Image src={manuscriptButtonIcons[safeState]} width={20} height={20} alt="" />}
     >
       {children}

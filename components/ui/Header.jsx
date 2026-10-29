@@ -40,7 +40,7 @@ function BrandLogo({ mobile = false, href = "/" }) {
 }
 
 function ArrowIcon({ mobile = false }) {
-  return <Image className={"editorial-header-arrowIconGraphic"} src={mobile ? "/header/mobile-arrow.svg" : "/header/arrow-up-right.svg"} width={20} height={20} alt="" />;
+  return <Image src={mobile ? "/header/mobile-arrow.svg" : "/header/arrow-up-right.svg"} width={20} height={20} alt="" />;
 }
 
 function SearchIcon() {
@@ -68,6 +68,7 @@ function AccountActions({ mobile = false, loginHref, submitHref, labels }) {
         size="manuscript"
         className={mobile ? "editorial-header-mobileSubmit" : "editorial-header-submit"}
         href={submitHref}
+        arrowAnimation
         endIcon={<ArrowIcon mobile={mobile} />}
       >
         {labels.submit}
@@ -76,21 +77,24 @@ function AccountActions({ mobile = false, loginHref, submitHref, labels }) {
   );
 }
 
-function NavItems({ items, mobile, openMenu, setOpenMenu }) {
+function NavItems({ items, mobile, openMenu, setOpenMenu, activeHref }) {
   return items.map((item) => {
     const hasMenu = Array.isArray(item.menu) && item.menu.length > 0;
     const isOpen = openMenu === item.label;
+    const isActive = activeHref === item.href;
     const menuId = `header-menu-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
     return (
       <div className={`${"editorial-header-navItem"} ${mobile ? "editorial-header-mobileNavItem" : ""}`} key={item.label}>
         <Button
           variant="text"
           size="sm"
-          className={`${"editorial-header-navLink"} ${isOpen ? "editorial-header-navLinkActive" : ""}`}
+          className={`${"editorial-header-navLink"} ${isOpen || isActive ? "editorial-header-navLinkActive" : ""}`}
+          aria-current={isActive ? "page" : undefined}
           href={hasMenu ? undefined : item.href}
           aria-expanded={hasMenu ? isOpen : undefined}
           aria-controls={hasMenu ? menuId : undefined}
           onClick={hasMenu ? () => setOpenMenu(isOpen ? null : item.label) : undefined}
+          arrowAnimation={false}
           endIcon={item.menu ? <Image className={`${"editorial-header-chevron"} ${isOpen ? "editorial-header-chevronOpen" : ""}`} src={mobile ? "/header/mobile-chevron.svg" : "/header/chevron-down.svg"} width={mobile ? 20 : 14} height={mobile ? 20 : 14} alt="" /> : undefined}
         >
           {item.label}
@@ -122,6 +126,7 @@ export function Header({
   submitHref = "/submit-manuscript",
   searchHref = "/search",
   searchQuery = "",
+  activeHref,
   logoHref = "/",
   labels = { login: "Log-in/Sign-in", submit: "Submit Manuscript" },
   className = "",
@@ -188,7 +193,7 @@ export function Header({
       <div className={`${"editorial-header-navStage"} ${searchOpen ? "editorial-header-navStageSearchOpen" : ""} ${isSearchVariant ? "editorial-header-navStageVariant" : ""}`}>
       <nav className={"editorial-header-desktopNav"} aria-label="Main navigation" aria-hidden={searchOpen} inert={searchOpen}>
             <div className={"editorial-header-navLinks"}>
-              <NavItems items={items} mobile={false} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+              <NavItems items={items} mobile={false} openMenu={openMenu} setOpenMenu={setOpenMenu} activeHref={activeHref} />
             </div>
             <span className={"editorial-header-searchDivider"} aria-hidden="true" />
             <Button variant="text" size="sm" className={"editorial-header-searchLink"} onClick={openSearch} startIcon={<SearchIcon />}>
@@ -218,8 +223,8 @@ export function Header({
           </div>
           <p className={"editorial-header-mobilePromise"}>Knowledge, without boundaries.</p>
           <nav className={"editorial-header-mobileNav"} aria-label="Mobile navigation">
-            <NavItems items={items} mobile openMenu={openMenu} setOpenMenu={setOpenMenu} />
-            <Button variant="text" size="sm" className={"editorial-header-mobileSearchLink"} onClick={() => { openSearch(); setMobileOpen(false); }} endIcon={<SearchIcon />}>
+            <NavItems items={items} mobile openMenu={openMenu} setOpenMenu={setOpenMenu} activeHref={activeHref} />
+            <Button variant="text" size="sm" className={"editorial-header-mobileSearchLink"} onClick={() => { openSearch(); setMobileOpen(false); }} arrowAnimation={false} endIcon={<SearchIcon />}>
               Search
             </Button>
           </nav>
